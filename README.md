@@ -121,4 +121,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - [React](https://reactjs.org/)
 - [Django](https://www.djangoproject.com/)
-- [OpenWeatherMap API](https://openweathermap.org/api)
