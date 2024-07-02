@@ -14,7 +14,6 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    console.log(password, confirmPass);
     if (password !== confirmPass) {
       setError("passwords don't match.");
       return;

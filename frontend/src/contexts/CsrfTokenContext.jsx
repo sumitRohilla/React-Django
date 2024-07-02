@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext } from "react";
+import { useEffect, createContext } from "react";
 import { getCookie } from "../utils/getCookie";
 
 const CsrfContext = createContext();
@@ -12,10 +12,13 @@ const CsrfTokenProvider = ({ children }) => {
       try {
         const token = getCookie("csrftoken");
         if (!token) {
-          const response = await fetch("/api/csrf-token/", {
-            signal: signal,
-            credentials: "same-origin",
-          });
+          const response = await fetch(
+            "http://localhost:8000/api/csrf-token/",
+            {
+              signal: signal,
+              credentials: "include",
+            }
+          );
 
           if (!response.ok) {
             throw new Error("Error fetching CSRF token");

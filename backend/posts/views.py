@@ -5,7 +5,7 @@ from django.middleware.csrf import get_token
 from django.contrib.auth.models import User
 from .models import Post
 from .serializers import PostForm
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 import json
 
@@ -14,11 +14,9 @@ import json
 
 @method_decorator(ensure_csrf_cookie, name="dispatch")
 class CsrfTokenView(View):
-
     def get(self, request, *args, **kwargs):
-        token = get_token(request)
-
-        return JsonResponse({"message": "Token generated successfully"})
+        response = JsonResponse({"message": "Token generated successfully"})
+        return response
 
 
 class CheckAuthView(View):
@@ -136,11 +134,12 @@ class PostDetailView(View):
 
 class PostUserView(View):
     def get(self, request):
+
         try:
             data = Post.objects.filter(author=request.user)
+
             if data.exists():
                 user_posts = list(data.values("title", "body", "id"))
-
                 return JsonResponse(user_posts, safe=False)
             return JsonResponse({"message": "No Posts available"}, status=404)
         except Exception as e:

@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { CsrfContext } from "../contexts/CsrfTokenContext";
 import { Link, useNavigate } from "react-router-dom";
-import { getCookie } from "../utils/getCookie";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Login = () => {

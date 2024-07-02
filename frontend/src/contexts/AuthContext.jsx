@@ -12,9 +12,9 @@ const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch("/api/check-auth/", {
+      const response = await fetch("http://localhost:8000/api/check-auth/", {
         signal: signal,
-        credentials: "same-origin",
+        credentials: "include",
       });
 
       if (!response.ok) {
@@ -30,13 +30,14 @@ const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const response = await fetch("/api/login/", {
+      const response = await fetch("http://localhost:8000/api/login/", {
         method: "POST",
         headers: {
           "content-type": "application/json",
           "X-CSRFToken": getCsrfToken(),
-          signal: signal,
         },
+        signal: signal,
+        credentials: "include",
         body: JSON.stringify(credentials),
       });
 
@@ -52,13 +53,14 @@ const AuthProvider = ({ children }) => {
 
   const register = async (credentials) => {
     try {
-      const response = await fetch("/api/register/", {
+      const response = await fetch("http://localhost:8000/api/register/", {
         method: "POST",
         headers: {
           "content-type": "application/json",
           "X-CSRFToken": getCsrfToken(),
-          signal: signal,
         },
+        credentials: "include",
+        signal: signal,
         body: JSON.stringify(credentials),
       });
 
@@ -73,13 +75,14 @@ const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await fetch("/api/logout/", {
+      const response = await fetch("http://localhost:8000/api/logout/", {
         method: "POST",
         headers: {
           "content-type": "application/json",
           "X-CSRFToken": getCsrfToken(),
-          signal: signal,
         },
+        signal: signal,
+        credentials: "include",
       });
 
       if (!response.ok) {

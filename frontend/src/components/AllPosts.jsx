@@ -14,7 +14,9 @@ const AllPosts = () => {
 
     const fetchPosts = async () => {
       try {
-        const response = await fetch("/api/posts/", { signal: signal });
+        const response = await fetch("http://localhost:8000/api/posts/", {
+          signal: signal,
+        });
 
         if (!response.ok) {
           throw new Error(`Error fetching data!! Status : ${response.status}`);

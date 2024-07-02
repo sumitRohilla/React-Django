@@ -16,7 +16,10 @@ const ManagePosts = () => {
     const fetchPosts = async () => {
       try {
         if (isLoggedIn) {
-          const postRes = await fetch("/api/user-posts/", { signal: signal });
+          const postRes = await fetch("http://localhost:8000/api/user-posts/", {
+            signal: signal,
+            credentials: "include",
+          });
 
           if (postRes.status === 404) {
             setPosts([]);
@@ -42,7 +45,7 @@ const ManagePosts = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`/api/posts/${id}`, {
+      const response = await fetch(`http://localhost:8000/api/posts/${id}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",

@@ -13,7 +13,9 @@ const PostForm = ({ isEdit = false }) => {
     if (isEdit && id) {
       const fetchPost = async () => {
         try {
-          const response = await fetch(`/api/posts/${id}/`);
+          const response = await fetch(
+            `http://localhost:8000/api/posts/${id}/`
+          );
 
           if (!response.ok) {
             throw new Error("Error fetching data!!");
